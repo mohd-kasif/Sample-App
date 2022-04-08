@@ -1,0 +1,83 @@
+import React, {useState} from 'react';
+import {TabRouter} from '@react-navigation/native';
+
+import {
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  View,
+  Image,
+  TextInput,
+  Pressable,
+  Dimensions,
+  KeyboardAvoidingView,
+} from 'react-native';
+const Width = Dimensions.get('window').width;
+const Height = Dimensions.get('window').height;
+// import Ionicons from 'react-native-vector-icons/Ionicons';
+import Entypo from 'react-native-vector-icons/Entypo';
+import {
+  DrawerContentScrollView,
+  DrawerItemList,
+} from '@react-navigation/drawer';
+
+import Icon from 'react-native-vector-icons/FontAwesome';
+const MyDrawer = props => {
+  return (
+    <View style={{flex: 1}}>
+      <DrawerContentScrollView {...props}>
+        <Entypo style={styles.cross_icon} name="cross" size={20} />
+        <Text style={styles.profile}>Profile</Text>
+        <Image
+          source={require('../Images/photo.jpg')}
+          style={styles.profile_image}
+        />
+        <Text style={styles.profile_name}>Mohd Kashif</Text>
+        <DrawerItemList {...props} />
+      </DrawerContentScrollView>
+    </View>
+  );
+};
+const styles = StyleSheet.create({
+  cross_icon: {
+    marginLeft: 241.8,
+    marginTop: 29,
+  },
+  search_bar: {
+    width: 301,
+    height: 40,
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: '#020202',
+    marginTop: 22,
+    marginLeft: 21.5,
+  },
+  profile_image: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    marginTop: 16,
+    marginLeft: 103,
+    // position: 'absolute',
+  },
+  profile: {
+    marginTop: 9.8,
+    marginLeft: 112,
+    fontSize: 18,
+    lineHeight: 18,
+    color: '#262626',
+    fontWeight: 'bold',
+  },
+  profile_name: {
+    marginTop: 19,
+    marginLeft: 107,
+    fontSize: 16,
+    lineHeight: 18,
+    color: '#262626',
+    marginBottom: 32,
+  },
+});
+export default MyDrawer;
