@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 const Width = Dimensions.get('window').width;
 const Height = Dimensions.get('window').height;
-// import Ionicons from 'react-native-vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {
   DrawerContentScrollView,
@@ -31,10 +31,26 @@ const MyDrawer = props => {
       <DrawerContentScrollView {...props}>
         <Entypo style={styles.cross_icon} name="cross" size={20} />
         <Text style={styles.profile}>Profile</Text>
-        <Image
-          source={require('../Images/photo.jpg')}
-          style={styles.profile_image}
-        />
+        <View style={{position: 'relative'}}>
+          <View
+            style={{
+              width: 36,
+              height: 36,
+              position: 'absolute',
+              borderRadius: 50,
+              marginLeft: 158,
+              marginTop: 18,
+              backgroundColor: '#C4C4C4',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Ionicons style={{}} name="camera-outline" size={22} />
+          </View>
+          <Image
+            source={require('../Images/photo.jpg')}
+            style={styles.profile_image}
+          />
+        </View>
         <Text style={styles.profile_name}>Mohd Kashif</Text>
         <DrawerItemList {...props} />
       </DrawerContentScrollView>
@@ -62,6 +78,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
     marginLeft: 103,
     // position: 'absolute',
+    zIndex: -1,
   },
   profile: {
     marginTop: 9.8,
