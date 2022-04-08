@@ -61,9 +61,9 @@ const BankAccount = ({navigation}) => {
     carouselRef.current.scrollToIndex(1);
   });
 
-  const renderItems = (data, index) => {
-    const {title, rating, price} = data;
-    console.log(data);
+  function renderItems({item, index}) {
+    const {title, rating, price} = item;
+    console.log(item);
     return (
       <View>
         <View
@@ -84,9 +84,9 @@ const BankAccount = ({navigation}) => {
         </View>
       </View>
     );
-  };
+  }
   return (
-    <View style={{flex: 1}}>
+    <ScrollView style={{flex: 1}}>
       <View style={{flexDirection: 'row'}}>
         <Icon
           style={styles.drawer_icon}
@@ -114,7 +114,10 @@ const BankAccount = ({navigation}) => {
           ref={carouselRef}
         />
       </View>
-    </View>
+      <View>
+        <Text style={styles.second_heading}>Trading and Investing</Text>
+      </View>
+    </ScrollView>
   );
 };
 const styles = StyleSheet.create({
@@ -155,6 +158,13 @@ const styles = StyleSheet.create({
   },
   lowerContainer: {
     alignItems: 'center',
+  },
+  second_heading: {
+    marginTop: 42,
+    marginLeft: 16,
+    fontSize: 24,
+    lineHeight: 24,
+    color: '#262626',
   },
 });
 export default BankAccount;
