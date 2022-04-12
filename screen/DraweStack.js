@@ -15,7 +15,7 @@ const Drawer = createDrawerNavigator();
 const DrawerStack = () => {
   return (
     <Drawer.Navigator
-      drawerContent={(props, navigation) => <MyDrawer {...props} />}
+      drawerContent={props => <MyDrawer {...props} />}
       screenOptions={{headerShown: false, drawerLabelStyle: {marginLeft: -25}}}>
       {/* <Drawer.Screen name="Home" component={HomeScreen} /> */}
       <Drawer.Screen

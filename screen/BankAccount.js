@@ -61,6 +61,29 @@ const BankAccount = ({navigation}) => {
     carouselRef.current.scrollToIndex(1);
   });
 
+  function renderSecond({item, index}) {
+    const {title, rating, price} = item;
+    return (
+      <View>
+        <View
+          style={styles.sec_card}
+          onPress={() => {
+            if (index === 0) {
+              carouselRef.current.scrollToIndex(5);
+            } else if (index === data.length - 1) {
+              carouselRef.current.scrollToIndex(1);
+            } else {
+              carouselRef.current.scrollToIndex(index);
+            }
+          }}></View>
+        <View style={styles.lowerContainer}>
+          <Text>{title}</Text>
+          <Text>{rating}</Text>
+          <Text>{price}</Text>
+        </View>
+      </View>
+    );
+  }
   function renderItems({item, index}) {
     const {title, rating, price} = item;
     console.log(item);
@@ -116,6 +139,39 @@ const BankAccount = ({navigation}) => {
       </View>
       <View>
         <Text style={styles.second_heading}>Trading and Investing</Text>
+        <Text style={styles.sub_heading}>
+          Watch these videos and if you like subscribe to{'\n'}our course to
+          further excel in market
+        </Text>
+      </View>
+      <View>
+        <Carousel
+          data={data}
+          renderItem={renderSecond}
+          itemWidth={(255 / designWidth) * Width}
+          inActiveScale={1}
+          separatorWidth={15}
+          containerWidth={Width}
+          ref={carouselRef}
+        />
+      </View>
+      <View>
+        <Text style={styles.second_heading}>Equities, Futures and Options</Text>
+        <Text style={styles.sub_heading}>
+          Watch these videos and if you like subscribe to{'\n'}our course to
+          further excel in market
+        </Text>
+      </View>
+      <View>
+        <Carousel
+          data={data}
+          renderItem={renderSecond}
+          itemWidth={(255 / designWidth) * Width}
+          inActiveScale={1}
+          separatorWidth={15}
+          containerWidth={Width}
+          ref={carouselRef}
+        />
       </View>
     </ScrollView>
   );
@@ -165,6 +221,13 @@ const styles = StyleSheet.create({
     fontSize: 24,
     lineHeight: 24,
     color: '#262626',
+  },
+  sec_card: {
+    backgroundColor: '#A8A8A8',
+    height: (255 / designHeight) * Height,
+    marginRight: 0,
+    paddingRight: 0,
+    marginTop: 23,
   },
 });
 export default BankAccount;

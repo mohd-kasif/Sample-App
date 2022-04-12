@@ -25,11 +25,47 @@ import {
 } from '@react-navigation/drawer';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {Camera, useCameraDevices} from 'react-native-vision-camera';
+
+export const OpenCamera = () => {
+  const devices = useCameraDevices();
+  const device = devices.front;
+  console.log(device);
+  if (device == null)
+    return (
+      <View>
+        <Text>Nothing is Here</Text>
+      </View>
+    );
+  return (
+    <Camera style={StyleSheet.absoluteFill} device={device} isActive={true} />
+  );
+};
+
 const MyDrawer = props => {
+  console.log('Props Navigation', props.navigation);
+  // var devices = useCameraDevices();
+  // console.log('line number 31', devices.back);
+  const handleCamera = async () => {
+    try {
+      const newCameraPermission = await Camera.requestCameraPermission();
+      console.log(newCameraPermission);
+      if (newCameraPermission === 'authorized') {
+        props.navigation.navigate('OpenCamera');
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <View style={{flex: 1}}>
       <DrawerContentScrollView {...props}>
-        <Entypo style={styles.cross_icon} name="cross" size={20} />
+        <Entypo
+          onPress={() => props.navigation.closeDrawer()}
+          style={styles.cross_icon}
+          name="cross"
+          size={20}
+        />
         <Text style={styles.profile}>Profile</Text>
         <View style={{position: 'relative'}}>
           <View
@@ -44,7 +80,12 @@ const MyDrawer = props => {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            <Ionicons style={{}} name="camera-outline" size={22} />
+            <Ionicons
+              onPress={() => handleCamera()}
+              style={{}}
+              name="camera-outline"
+              size={22}
+            />
           </View>
           <Image
             source={require('../Images/photo.jpg')}

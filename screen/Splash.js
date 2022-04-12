@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import {
   SafeAreaView,
@@ -17,11 +17,12 @@ const Stack = createNativeStackNavigator();
 
 const Height = Dimensions.get('window').height;
 const Width = Dimensions.get('window').width;
+import SplashScreen from 'react-native-splash-screen';
 
-const Splash = ({navigation}) => {
-  setTimeout(() => {
-    navigation.push('Login');
-  }, 2000);
+const Splash = () => {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
 
   return (
     <SafeAreaView style={styles.conatiner}>
